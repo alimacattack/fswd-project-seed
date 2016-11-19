@@ -1,7 +1,11 @@
 extends ./layout.jade
 
 block body
-  if user
-    | Hello #{user.username}!
-  else
-    | Hello world!
+  div(ng-controller="uvIndexController")
+    if user
+      | Hello #{user.username}!
+    else
+      | Hello world!
+
+    p The current UV Index is
+      {{currentUvIndex.UV_VALUE}}

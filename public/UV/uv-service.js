@@ -7,16 +7,26 @@ angular.module('uv.service', [])
   .factory('retriever',['$http', function($http) {
 
     //Private Service fuctions (not returned by factory)
-    function realData() {
-      return $http.get('https://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/ZIP/21230/JSON');
+    function realData(zip, callback) {
+      $http.get('/uv/22222').then(
+        function(response) {
+          // TODO: Validation!  We might not get any data back.
+          callback(response.data);
+        },
+        function(response) {
+          // TODO: actual error logic and logging and shit
+          callback('idunno')
+        }
+      );
+
       // return $http({
       //   method:'GET',
       //   url:'https://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/ZIP/21230/JSON'
       // });
     }
 
-    function testData()  {
-      return [
+    function testData(zipcode, callback)  {
+      callback([
         {"ORDER":1,"ZIP":21230,"DATE_TIME":"NOV/15/2016 06 AM","UV_VALUE":0},
         {"ORDER":2,"ZIP":21230,"DATE_TIME":"NOV/15/2016 07 AM","UV_VALUE":0},
         {"ORDER":3,"ZIP":21230,"DATE_TIME":"NOV/15/2016 08 AM","UV_VALUE":0},
@@ -38,13 +48,24 @@ angular.module('uv.service', [])
         {"ORDER":19,"ZIP":21230,"DATE_TIME":"NOV/15/2016 12 AM","UV_VALUE":0},
         {"ORDER":20,"ZIP":21230,"DATE_TIME":"NOV/15/2016 01 AM","UV_VALUE":0},
         {"ORDER":21,"ZIP":21230,"DATE_TIME":"NOV/15/2016 02 AM","UV_VALUE":0}
-      ];
+      ]);
+    }
+
+    // Get a string, send back a zip
+    function parseZip(zipCode) {
+      // TODO: actually parse the zip code
+      return '22222';
     }
 
     // Public Service functions (returned by factory)
-    function getByZip(zipCode) {
-      //TODO Get the data from the EPA
-      return realData()[0];
+
+    // This function is basically a wrapper around the realData or fakeData function
+    function getByZip(zipCode, callback) {
+      // Only send a valid zip to the server
+      zipCode = parseZip(zipCode);
+
+      // ENGAGE!
+      realData(zipCode, callback);
     }
 
     // Exports from the service _to_the module

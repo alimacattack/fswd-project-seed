@@ -6,11 +6,11 @@ angular.module('uv.controller', [])
 
   // Set the current UV index to some dummy value so that we look
   // like we're doing something
-  $scope.currentUvIndex = '... drum roll please'
+  $scope.currentUvIndex = '... drum roll please';
   var uvData;
 
 
-  retriever.getByZip(21201, updateUvIndex);
+  retriever.getByZip(21230, updateUvIndex);
 
   // Callback for the service
   function updateUvIndex(data) {

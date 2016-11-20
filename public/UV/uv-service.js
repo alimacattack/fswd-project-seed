@@ -8,9 +8,10 @@ angular.module('uv.service', [])
 
     //Private Service fuctions (not returned by factory)
     function realData(zip, callback) {
-      $http.get('/uv/22222').then(
+      $http.get('/uv/' + zip).then(
         function(response) {
           // TODO: Validation!  We might not get any data back.
+          // TODO: Find the current UV value from the list. (Parse the DATE_TIME from the EPA)
           callback(response.data);
         },
         function(response) {
@@ -26,6 +27,7 @@ angular.module('uv.service', [])
     }
 
     function testData(zipcode, callback)  {
+      // RIVER SEZ: If you're using this for testing, update MMM/DD/YYYY to the current date.
       callback([
         {"ORDER":1,"ZIP":21230,"DATE_TIME":"NOV/15/2016 06 AM","UV_VALUE":0},
         {"ORDER":2,"ZIP":21230,"DATE_TIME":"NOV/15/2016 07 AM","UV_VALUE":0},
@@ -51,10 +53,10 @@ angular.module('uv.service', [])
       ]);
     }
 
-    // Get a string, send back a zip
+    // Get a string, send back a zip or undefined
     function parseZip(zipCode) {
       // TODO: actually parse the zip code
-      return '22222';
+      return zipCode;
     }
 
     // Public Service functions (returned by factory)
@@ -64,8 +66,13 @@ angular.module('uv.service', [])
       // Only send a valid zip to the server
       zipCode = parseZip(zipCode);
 
-      // ENGAGE!
-      realData(zipCode, callback);
+      if(zipCode = undefined) {
+        // TODO: Tell the user to STFU
+      }
+      else {
+        // ENGAGE!
+        realData(zipCode, callback);
+      }
     }
 
     // Exports from the service _to_the module

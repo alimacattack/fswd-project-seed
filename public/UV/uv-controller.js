@@ -15,7 +15,12 @@ angular.module('uv.controller', [])
   // Callback for the service
   function updateUvIndex(data) {
       uvData = data;
-      $scope.currentUvIndex = data[0].UV_VALUE;
+      if(data) {
+        $scope.currentUvIndex = data[0].UV_VALUE;
+      }
+      else {
+        $scope.currentUvIndex = '...idunno';
+      }
   }
 }])
 

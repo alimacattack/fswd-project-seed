@@ -10,5 +10,5 @@ block body
     div
       input(ng-model="zipCode")
       button(ng-click="getUvIndex()") Get UV Index
-      p The current UV Index is
+      p(ng-if="currentUvIndex !== null") The current UV Index is
         {{currentUvIndex}}

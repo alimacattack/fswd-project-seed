@@ -4,11 +4,20 @@ var angular = require('angular');
 angular.module('uv.controller', [])
 .controller('uvIndexController',['$scope','retriever', function($scope, retriever){
 
-  // Set the current UV index to some dummy value so that we look
-  // like we're doing something
-  $scope.currentUvIndex = null;
   $scope.zipCode = '21230';
-  var uvData;
+  $scope.currentUvIndex = null;
+  $scope.currentAdvice = null;
+
+  var possibleAdvice = {
+    0:'It\'s dark out',
+    1:'Enjoy the outdoors',
+    2:'Put on sunglasses',
+    3:'Put on sunglasses and sunscreen',
+    4:'Reapply SPF 30 or up at least every 2 hours',
+    5:'Reapply SPF 30 or up at least every 2 hours',
+    6:'Reapply SPF 30 or up at least every 2 hours',
+
+  };
 
   $scope.getUvIndex = function() {
     retriever.getByZip($scope.zipCode, updateUvIndex);
@@ -16,9 +25,10 @@ angular.module('uv.controller', [])
 
   // Callback for the service
   function updateUvIndex(data) {
-      uvData = data;
       if(data) {
-        $scope.currentUvIndex = data[0].UV_VALUE;
+        var index = data[0].UV_VALUE;
+        $scope.currentUvIndex = index
+        $scope.currentAdvice = possibleAdvice[index];
       }
       else {
         $scope.currentUvIndex = '...idunno';

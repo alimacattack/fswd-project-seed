@@ -24,6 +24,9 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true,
         notEmpty: true
       }
+    },
+    zipCode: {
+      type: DataTypes.STRING
     }
   }, {
     instanceMethods: {

@@ -7,10 +7,12 @@ angular.module('uv.controller', [])
   // Set the current UV index to some dummy value so that we look
   // like we're doing something
   $scope.currentUvIndex = '... drum roll please';
+  $scope.zipCode = '21230';
   var uvData;
 
-
-  retriever.getByZip(21230, updateUvIndex);
+  $scope.getUvIndex = function() {
+    retriever.getByZip($scope.zipCode, updateUvIndex);
+  }
 
   // Callback for the service
   function updateUvIndex(data) {

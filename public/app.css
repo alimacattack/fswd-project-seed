@@ -1,0 +1,22 @@
+.uv-chart {
+  margin: 0 auto
+}
+
+.chart-column {
+  display: inline-block;
+  text-align: center;
+  min-width: 50px;
+}
+
+.current-uv-value {
+  font-weight: bold;
+}
+
+.current-uv-value .uv-bar {
+  border: 1px solid black;
+}
+
+.uv-bar {
+  width: 100%;
+  background: green;
+}

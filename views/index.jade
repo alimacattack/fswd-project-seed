@@ -8,6 +8,19 @@ block body
       | Hello world!
 
     div
-      input(ng-model="zipCode")
+      .form-group
+        label(for="zipCode") Zip Code
+        input.form-control(ng-model="zipCode" name="zipCode")
+        //- label(for="skinType") Fitzpatrick skin type
+        //- input.form-control(ng-model="skinType", name="skinType")
       button(ng-click="getUvIndex()") Get UV Index
       p(ng-if="currentUvIndex !== null") The current UV Index is {{currentUvIndex}}. {{ currentAdvice }}
+
+    .uv-chart(ng-if="hourlyData.length > 0")
+      .chart-column(ng-repeat="hour in hourlyData" ng-class="(hour.ORDER === mostCurrent.ORDER) ? 'current-uv-value' : ''")
+        .uv-label {{hour.UV_VALUE}}
+        .uv-bar(ng-style="{height: hour.UV_VALUE*10 + 'px', background: 'hsl(' + (120 - 18*hour.UV_VALUE) + ', 70%, 70%)'}")
+        .time-label {{hour.TIME}}
+
+  if user
+    script var user = !{JSON.stringify(user)};

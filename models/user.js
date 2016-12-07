@@ -27,6 +27,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     zipCode: {
       type: DataTypes.STRING
+    },
+    skinType: {
+      type: DataTypes.STRING
     }
   }, {
     instanceMethods: {

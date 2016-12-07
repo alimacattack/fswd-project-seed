@@ -55,10 +55,10 @@ angular.module('uv.service', [])
         }
       );
 
-      return $http({
-        method:'GET',
-        url:'https://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/ZIP/21230/JSON'
-      });
+      // return $http({
+      //   method:'GET',
+      //   url:'https://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/ZIP/21230/JSON'
+      // });
     }
 
     function testData(zipcode, callback)  {

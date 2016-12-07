@@ -20,3 +20,8 @@
   width: 100%;
   background: green;
 }
+
+body {
+  background-image: url(images/sun_northpole.jpg);
+  background-size: cover;
+}
